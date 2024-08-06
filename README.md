@@ -1,5 +1,6 @@
 # Next.js Chatbot Application
-*Made for prisat*
+<u>*Made for prisat* </u>
+
 A simple chatbot application built with Next.js that integrates with OpenAI's GPT-3 model to provide intelligent responses. This project demonstrates how to set up a basic chat interface, handle API requests, and display chatbot responses using Next.js and React.
 
 ## Table of Contents
