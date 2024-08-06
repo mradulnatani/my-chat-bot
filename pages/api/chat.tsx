@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const API_KEY = process.env.OPENAI_API_KEY; 
+const API_KEY = process.env.OPENAI_API_KEY;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
@@ -20,6 +20,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
 
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error from OpenAI API:', response.status, errorText);
         throw new Error('Network response was not ok');
       }
 
@@ -27,6 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const message = data.choices[0].text.trim();
       res.status(200).json({ message });
     } catch (error) {
+      console.error('Error fetching data from OpenAI API:', error);
       res.status(500).json({ error: 'Failed to fetch data from ChatGPT API' });
     }
   } else {
